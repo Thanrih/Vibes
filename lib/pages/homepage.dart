@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
-import '../assets/manga_card.dart';
+import '../assets/card.dart';
 
 class MyHomePage extends StatelessWidget {
   final String title;
@@ -36,9 +36,6 @@ class MyHomePage extends StatelessWidget {
               initialPage: 0,
               enableInfiniteScroll: true,
               reverse: false,
-              autoPlay: true,
-              autoPlayInterval: Duration(seconds: 3),
-              autoPlayAnimationDuration: Duration(milliseconds: 800),
               autoPlayCurve: Curves.fastOutSlowIn,
               enlargeCenterPage: true,
               scrollDirection: Axis.horizontal,
