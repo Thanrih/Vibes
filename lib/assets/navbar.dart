@@ -8,24 +8,22 @@ class CustomBottomNavigationBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BottomNavigationBar(
-      items: const [
-        BottomNavigationBarItem(
-          icon: Icon(Icons.home),
-          label: 'Início',
-        ),
-        BottomNavigationBarItem(
-          icon: Icon(Icons.save),
-          label: 'Salvos',
-        ),
-        BottomNavigationBarItem(
-          icon: Icon(Icons.history),
-          label: 'Histórico',
-        ),
-      ],
-      currentIndex: currentIndex,
-      selectedItemColor: Colors.black,
-      onTap: onTap,
+    return NavigationBar(
+      //labelBehavior: NavigationDestinationLabelBehavior.alwaysHide,
+    destinations: const [
+          NavigationDestination(
+            icon: Icon(Icons.home),
+            label: 'Início'),
+          NavigationDestination(
+            icon: Icon(Icons.save),
+            label: 'Salvos',
+            ),
+          NavigationDestination(
+            icon: Icon(Icons.history),
+            label: 'Histórico',)
+        ],
+      selectedIndex: currentIndex,
+      onDestinationSelected: (int index){},
     );
   }
 }

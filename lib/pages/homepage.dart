@@ -30,7 +30,7 @@ class MyHomePage extends StatelessWidget {
               ),
             ],
             options: CarouselOptions(
-              autoPlay: true,
+              autoPlay: false,
               autoPlayCurve: Curves.fastOutSlowIn,
               autoPlayAnimationDuration: const Duration(milliseconds: 500),
               height: 300,

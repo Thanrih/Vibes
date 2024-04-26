@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
 
 class MangaCard extends StatelessWidget {
   final String imageUrl;
@@ -7,17 +8,21 @@ class MangaCard extends StatelessWidget {
   final String badge;
 
   const MangaCard({
-    Key? key,
+    super.key,
     required this.imageUrl,
     required this.title,
     this.subtitle = '',
     this.badge = '',
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
+    final supabase = Supabase.instance.client;
+    final data = supabase.from('table_name').select('*');
+
     return Card(
       child: Column(
+
         children: [
           Image.network(
             imageUrl.isNotEmpty ? imageUrl : 'https://cdna.artstation.com/p/assets/images/images/067/169/074/original/jonathan-rodrigues-animacao.gif?1694705871',

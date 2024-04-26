@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'assets/navbar.dart';
+import 'package:sakugaacaptors/pages/obradesc.dart';
 import 'pages/homepage.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
@@ -16,14 +16,14 @@ void main() async {
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-
-    return const MaterialApp(
-        title: 'Sakugaa Captors',
-        home: MyHomePage(title: 'Sakugaa Captors')
+    return MaterialApp(
+      title: 'Sakugaa Captors',
+      home: MyHomePage(title: 'Sakugaa Captors'),
+      routes: {
+        '/obradesc': (context) => const ObraDescPage(title: 'Descrição'),
+      },
     );
   }
 }
