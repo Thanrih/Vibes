@@ -20,10 +20,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Sakugaa Captors',
-      home: MyHomePage(title: 'Sakugaa Captors'),
-      routes: {
-        '/obradesc': (context) => const ObraDescPage(title: 'Descrição'),
-      },
+      home: MyHomePage(),
     );
   }
 }

@@ -3,16 +3,22 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:sakugaacaptors/assets/navbar.dart';
 import '../assets/card.dart';
 
-class MyHomePage extends StatelessWidget {
-  final String title;
+class MyHomePage extends StatefulWidget {
+  const MyHomePage({Key? key}) : super(key: key);
 
-  const MyHomePage({super.key, required this.title});
+  @override
+  _MyHomePageState createState() => _MyHomePageState();
+}
+
+class _MyHomePageState extends State<MyHomePage> {
+  int pagina = 0;
+
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(title),
+        title: Text('Home'),
       ),
       body: Column(
         children: [
@@ -44,7 +50,7 @@ class MyHomePage extends StatelessWidget {
           ),
         ],
       ),
-      bottomNavigationBar: CustomBottomNavigationBar(currentIndex: 0, onTap: (index) {}),
+      bottomNavigationBar: CustomBottomNavigationBar(),
     );
   }
 }

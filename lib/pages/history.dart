@@ -4,6 +4,7 @@ import 'package:sakugaacaptors/assets/navbar.dart';
 import '../assets/card.dart';
 
 class HistoryPage extends StatelessWidget {
+  final int pagina = 1;
   final String title;
 
   const HistoryPage({super.key, required this.title});
@@ -16,7 +17,6 @@ class HistoryPage extends StatelessWidget {
       ),
       body: Column(
       ),
-      bottomNavigationBar: CustomBottomNavigationBar(currentIndex: 0, onTap: (index) {}),
     );
   }
 }

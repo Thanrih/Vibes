@@ -1,29 +1,35 @@
 import 'package:flutter/material.dart';
+import 'package:sakugaacaptors/pages/homepage.dart';
+import 'package:sakugaacaptors/pages/history.dart';
+import 'package:sakugaacaptors/pages/saved.dart';
 
-class CustomBottomNavigationBar extends StatelessWidget {
-  final int currentIndex;
-  final Function(int) onTap;
+class CustomBottomNavigationBar extends StatefulWidget {
+  const CustomBottomNavigationBar({super.key});
 
-  const CustomBottomNavigationBar({super.key, required this.currentIndex, required this.onTap});
+  @override
+  State<CustomBottomNavigationBar> createState() => _CustomBottomNavigationBarState();
+}
+
+class _CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> {
+  int pagina = 0;
 
   @override
   Widget build(BuildContext context) {
     return NavigationBar(
-      //labelBehavior: NavigationDestinationLabelBehavior.alwaysHide,
-    destinations: const [
-          NavigationDestination(
+          selectedIndex: pagina,
+          onDestinationSelected: (int i) => setState(() => pagina = i),
+            destinations: const [
+            NavigationDestination(
             icon: Icon(Icons.home),
             label: 'Início'),
-          NavigationDestination(
+            NavigationDestination(
             icon: Icon(Icons.save),
             label: 'Salvos',
             ),
-          NavigationDestination(
+            NavigationDestination(
             icon: Icon(Icons.history),
             label: 'Histórico',)
-        ],
-      selectedIndex: currentIndex,
-      onDestinationSelected: (int index){},
+            ],
     );
   }
 }

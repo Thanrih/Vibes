@@ -4,6 +4,8 @@ import '../assets/card.dart';
 
 class ObraDescPage extends StatelessWidget {
   final String title;
+  final int pagina = 2;
+
 
   const ObraDescPage({super.key, required this.title});
 
@@ -15,7 +17,6 @@ class ObraDescPage extends StatelessWidget {
       ),
       body: const Column(
       ),
-      bottomNavigationBar: CustomBottomNavigationBar(currentIndex: 0, onTap: (index) {}),
     );
   }
 }
