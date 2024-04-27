@@ -16,9 +16,9 @@ class _CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> {
   @override
   Widget build(BuildContext context) {
     return NavigationBar(
-          selectedIndex: pagina,
-          onDestinationSelected: (int i) => setState(() => pagina = i),
-            destinations: const [
+      indicatorColor: Colors.black,
+      backgroundColor: Colors.white,
+            destinations: const <Widget>[
             NavigationDestination(
             icon: Icon(Icons.home),
             label: 'Início'),
@@ -30,6 +30,12 @@ class _CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> {
             icon: Icon(Icons.history),
             label: 'Histórico',)
             ],
+      selectedIndex: pagina,
+      onDestinationSelected: (int index) {
+        setState(() {
+          pagina = index;
+        });
+      },
     );
   }
 }

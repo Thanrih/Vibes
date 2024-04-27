@@ -3,15 +3,14 @@ import 'package:sakugaacaptors/assets/navbar.dart';
 import '../assets/card.dart';
 
 class SavedPage extends StatelessWidget {
-  final String title;
 
-  const SavedPage({super.key, required this.title});
+  const SavedPage({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(title),
+        title: Text('saved'),
       ),
       body: const Column(
       ),

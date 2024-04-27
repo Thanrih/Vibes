@@ -4,7 +4,7 @@ import 'package:sakugaacaptors/assets/navbar.dart';
 import '../assets/card.dart';
 
 class MyHomePage extends StatefulWidget {
-  const MyHomePage({Key? key}) : super(key: key);
+  const MyHomePage({super.key});
 
   @override
   _MyHomePageState createState() => _MyHomePageState();
@@ -18,7 +18,6 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Home'),
       ),
       body: Column(
         children: [
@@ -36,7 +35,7 @@ class _MyHomePageState extends State<MyHomePage> {
               ),
             ],
             options: CarouselOptions(
-              autoPlay: false,
+              autoPlay: true,
               autoPlayCurve: Curves.fastOutSlowIn,
               autoPlayAnimationDuration: const Duration(milliseconds: 500),
               height: 300,
@@ -44,13 +43,26 @@ class _MyHomePageState extends State<MyHomePage> {
               initialPage: 0,
               enableInfiniteScroll: true,
               reverse: false,
-              enlargeCenterPage: true,
+              enlargeCenterPage: false,
               scrollDirection: Axis.horizontal,
+            ),
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: List.generate(
+              3,
+                  (index) => Container(
+                width: 100,
+                height: 100,
+                child: Center(
+                  child: MangaCard(imageUrl: '', title: '',),
+                ),
+              ),
             ),
           ),
         ],
       ),
-      bottomNavigationBar: CustomBottomNavigationBar(),
+      bottomNavigationBar: const CustomBottomNavigationBar(),
     );
   }
 }

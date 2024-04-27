@@ -35,7 +35,7 @@ class MangaCard extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    title.isNotEmpty? title : 'Frieren',
+                    title.isNotEmpty? title : '',
                     style: const TextStyle(
                       fontFamily: 'Roboto',
                       fontSize: 20,
@@ -43,7 +43,7 @@ class MangaCard extends StatelessWidget {
                     ),
                   ),
                   Text(
-                    subtitle.isNotEmpty ? subtitle : 'A epic adventure',
+                    subtitle.isNotEmpty ? subtitle : '',
                     style: const TextStyle(
                       fontFamily: 'Roboto',
                       fontSize: 16,

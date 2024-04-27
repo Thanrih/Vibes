@@ -5,15 +5,14 @@ import '../assets/card.dart';
 
 class HistoryPage extends StatelessWidget {
   final int pagina = 1;
-  final String title;
 
-  const HistoryPage({super.key, required this.title});
+  const HistoryPage({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(title),
+        title: Text('history'),
       ),
       body: Column(
       ),
