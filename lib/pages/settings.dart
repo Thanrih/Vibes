@@ -1,16 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:carousel_slider/carousel_slider.dart';
-import '../assets/card.dart';
 
-class HistoryPage extends StatelessWidget {
 
-  const HistoryPage({super.key});
+class ConfigPage extends StatelessWidget {
+
+  const ConfigPage ({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('history'),
+        title: const Text('Configurações'),
       ),
       body: const Column(
         children: [

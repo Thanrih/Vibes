@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:sakugaacaptors/pages/history.dart';
-import 'package:sakugaacaptors/pages/obradesc.dart';
 import 'package:sakugaacaptors/pages/homepage.dart';
+import 'package:sakugaacaptors/pages/saved.dart';
+import 'package:sakugaacaptors/pages/settings.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 void main() async {
@@ -27,8 +28,9 @@ class _MyAppState extends State<MyApp> {
   //lista de páginas mapeadas pela navbar
   final List<Widget> _pages = [
     MyHomePage(),
-    ObraDescPage(),
     HistoryPage(),
+    SavedPage(),
+    ConfigPage()
   ];
 
 //altera o estado da navbar quando um item for selecionado
@@ -66,6 +68,10 @@ class _MyAppState extends State<MyApp> {
             NavigationDestination(
               icon: Icon(Icons.save),
               label: 'Salvos',
+            ),
+            NavigationDestination(
+              icon: Icon(Icons.settings),
+              label: 'Configurações',
             ),
           ],
         ),

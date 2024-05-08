@@ -2,13 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import '../assets/card.dart';
 
+//defino statefull
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key});
 
   @override
+  //defino a estate
   _MyHomePageState createState() => _MyHomePageState();
 }
-
+ //incremento os estados
 class _MyHomePageState extends State<MyHomePage> {
   int pagina = 0;
 
