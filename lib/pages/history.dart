@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
-import 'package:sakugaacaptors/assets/navbar.dart';
 import '../assets/card.dart';
 
 class HistoryPage extends StatelessWidget {
-  final int pagina = 1;
+  final int pagina = 2;
 
   const HistoryPage({super.key});
 
@@ -12,10 +11,19 @@ class HistoryPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('history'),
+        title: const Text('history'),
       ),
-      body: Column(
+      body: const Column(
+        children: [
+          Row(
+            children: [
+              Card(
+              )
+            ],
+          )
+        ],
       ),
     );
+
   }
 }

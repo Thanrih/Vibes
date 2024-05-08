@@ -18,8 +18,6 @@ class MyTextField extends StatelessWidget {
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: 20.0),
       child: TextFormField(
-        keyboardType: TextInputType.number,
-        inputFormatters: [FilteringTextInputFormatter.allow(RegExp(r'^\d*\.?\d*'))],
         controller: controller,
         obscureText: obscureText,
         decoration: InputDecoration(
