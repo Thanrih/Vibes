@@ -8,15 +8,14 @@ class ConfigPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Configurações'),
-      ),
+      backgroundColor: Colors.black26,
+      appBar: AppBar(title: Text('Configurações')),
       body: const Column(
+        mainAxisAlignment: MainAxisAlignment.start,
         children: [
           Row(
             children: [
-              Card(
-              )
+              Icon(Icons.person_2_rounded, color: Colors.white),
             ],
           )
         ],

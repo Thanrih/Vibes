@@ -57,8 +57,8 @@ class _MyButtonState extends State<MyButton> {
       child: Container(
         width: widget.width, // Definindo a largura do botão
         height: widget.height, // Definindo a altura do botão
-        padding: EdgeInsets.all(25),
-        margin: EdgeInsets.symmetric(horizontal: 25),
+        padding: const EdgeInsets.all(25),
+        margin: const EdgeInsets.symmetric(horizontal: 25),
         decoration: BoxDecoration(
           color: _getBackgroundColor(),
           borderRadius: BorderRadius.circular(8),

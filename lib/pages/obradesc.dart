@@ -1,10 +1,7 @@
 import 'package:flutter/material.dart';
-import '../assets/card.dart';
+import 'package:sakugaacaptors/assets/my_button.dart';
 
 class ObraDescPage extends StatelessWidget {
-  final int pagina = 2;
-
-
   const ObraDescPage({super.key});
 
   @override
@@ -13,7 +10,19 @@ class ObraDescPage extends StatelessWidget {
       appBar: AppBar(
         title: Text('Description'),
       ),
-      body: const Column(
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Center(
+            child: MyButton(
+              onTap: () => Navigator.pushNamed(context, 'pages/obra'), // Replace with target page
+              buttonText: 'Ler',
+              width: 200.0,
+              height: 100.0,
+
+            ),
+          ),
+        ],
       ),
     );
   }

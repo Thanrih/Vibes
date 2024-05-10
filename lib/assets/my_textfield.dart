@@ -16,12 +16,12 @@ class MyTextField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.symmetric(horizontal: 20.0),
+      padding: const EdgeInsets.symmetric(horizontal: 20.0),
       child: TextFormField(
         controller: controller,
         obscureText: obscureText,
         decoration: InputDecoration(
-          enabledBorder: OutlineInputBorder(
+          enabledBorder: const OutlineInputBorder(
             borderSide: BorderSide(color: Colors.white),
           ),
           focusedBorder: OutlineInputBorder(
@@ -31,7 +31,7 @@ class MyTextField extends StatelessWidget {
           filled: true,
           labelText: hintText,
           labelStyle: TextStyle(color: Colors.grey.shade500),
-          contentPadding: EdgeInsets.fromLTRB(12, 20, 5, 12), // Ajuste aqui o espaçamento desejado
+          contentPadding: const EdgeInsets.fromLTRB(12, 20, 5, 12), // Ajuste aqui o espaçamento desejado
         ),
       ),
     );

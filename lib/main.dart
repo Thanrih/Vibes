@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:sakugaacaptors/pages/history.dart';
 import 'package:sakugaacaptors/pages/homepage.dart';
+import 'package:sakugaacaptors/pages/obradesc.dart';
 import 'package:sakugaacaptors/pages/saved.dart';
 import 'package:sakugaacaptors/pages/settings.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
+import 'package:sakugaacaptors/pages/reading.dart';
 
 void main() async {
   //Estou fazendo a conexão com o supabase por aqui
@@ -27,10 +29,10 @@ class _MyAppState extends State<MyApp> {
   int _currentIndex = 0;
   //lista de páginas mapeadas pela navbar
   final List<Widget> _pages = [
-    MyHomePage(),
-    HistoryPage(),
-    SavedPage(),
-    ConfigPage()
+    const MyHomePage(),
+    const HistoryPage(),
+    const SavedPage(),
+    const ConfigPage()
   ];
 
 //altera o estado da navbar quando um item for selecionado
@@ -47,35 +49,49 @@ class _MyAppState extends State<MyApp> {
       theme: ThemeData(
         useMaterial3: true, // Enable Material 3 theme
       ),
-      home: Scaffold(
-        appBar: AppBar(
-          title: Text('Sakugaa Captors'),
-        ),
-        //cria a navbar
+      home: Scaffold(//cria a navbar
         body: _pages[_currentIndex],
-        bottomNavigationBar: NavigationBar(
-          selectedIndex: _currentIndex,
-          onDestinationSelected: _onItemTapped,
-          destinations: const [
-            NavigationDestination(
-              icon: Icon(Icons.home),
-              label: 'Home',
+
+        bottomNavigationBar: NavigationBarTheme(
+          data: NavigationBarThemeData(
+            labelTextStyle:MaterialStateProperty.all(
+              const TextStyle(color: Colors.white),
+            )),
+          child: NavigationBar(
+              selectedIndex: _currentIndex,
+              onDestinationSelected: _onItemTapped,
+              indicatorColor: Colors.white,
+              backgroundColor: Colors.black,
+              destinations: const [
+                NavigationDestination(
+                  icon: Icon(Icons.home),
+                  label: 'Home',
+
+                ),
+                NavigationDestination(
+                  icon: Icon(Icons.history_edu_outlined),
+                  label: 'Histórico',
+                ),
+                NavigationDestination(
+                  icon: Icon(Icons.save),
+                  label: 'Salvos',
+                ),
+                NavigationDestination(
+                  icon: Icon(Icons.settings),
+                  label: 'Configurações',
+                ),
+              ],
             ),
-            NavigationDestination(
-              icon: Icon(Icons.history_edu_outlined),
-              label: 'Histórico',
-            ),
-            NavigationDestination(
-              icon: Icon(Icons.save),
-              label: 'Salvos',
-            ),
-            NavigationDestination(
-              icon: Icon(Icons.settings),
-              label: 'Configurações',
-            ),
-          ],
         ),
       ),
+      routes: {
+        'pages/home': (context) => const MyHomePage(),
+        'pages/history': (context) => const HistoryPage(),
+        'pages/saved': (context) => const SavedPage(),
+        'pages/config': (context) => const ConfigPage(),
+        'pages/desc': (context) => const ObraDescPage(),
+        'pages/obra': (context) => const ReadingPage(),
+      }
     );
   }
 }
