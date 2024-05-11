@@ -3,17 +3,19 @@ import 'package:flutter/material.dart';
 class MangaCard extends StatelessWidget {
   final String imageUrl;
   final String title;
-  final String subtitle;
   final String badge;
-  final int textSize;
+  final String desc;
+  final double textPadding;
+  final double textSize;
 
   const MangaCard({
     super.key,
+    this.textPadding=0,
     required this.imageUrl,
     this.title='',
-    required this.textSize,
-    this.subtitle = '',
+    this.textSize=0,
     this.badge = '',
+    required this.desc,
   });
 
   @override
@@ -22,52 +24,31 @@ class MangaCard extends StatelessWidget {
       onTap: () {
         Navigator.pushNamed(context, 'pages/desc'); // Use route name string
       },
-      child: Column(
-        children: [
-          Image.network(
-            imageUrl.isNotEmpty ? imageUrl : 'https://imgsrv.crunchyroll.com/cdn-cgi/image/format=auto,fit=contain,width=1200,height=675,quality=85/catalog/crunchyroll/4305090653ee4239dd0d797f1a4a6bdf.jpe',
-          ),
-          Padding(
-            padding: const EdgeInsets.all(8),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  title.isNotEmpty ? title : '',
-                  style: TextStyle(
-                    fontFamily: 'Roboto',
-                    fontSize: textSize.toDouble(), // Convert to double for fontSize
-                    fontWeight: FontWeight.bold,
-                    color: Colors.white,
-                  ),
-                ),
-                Text(
-                  subtitle.isNotEmpty ? subtitle : '',
-                  style: const TextStyle(
-                    fontFamily: 'Roboto',
-                    fontSize: 16,
-                  ),
-                ),
-                if (badge.isNotEmpty)
-                  Container(
-                    padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
-                    decoration: BoxDecoration(
-                      color: Colors.blue,
-                      borderRadius: BorderRadius.circular(5),
-                    ),
-                    child: Text(
-                      badge,
-                      style: const TextStyle(
-                        fontFamily: 'Roboto',
-                        fontSize: 12,
-                        color: Colors.white,
-                      ),
-                    ),
-                  ),
-              ],
+      child: Container(
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(0),
+          color: Colors.white,
+        ),
+        child: Column(
+          children: [
+            Image.network(
+              imageUrl.isNotEmpty ? imageUrl : 'https://lermangas.me/wp-content/uploads/2024/02/nossa-alianca-secreta.jpg',
+              loadingBuilder: (context, child, loadingProgress) {
+                if (loadingProgress == null) return child;
+                return CircularProgressIndicator(); // Exibe um indicador circular enquanto a imagem carrega
+              },
+              fit: BoxFit.contain,
             ),
-          ),
-        ],
+            Text(
+              title,
+              style: TextStyle(
+                color: Colors.black,
+                fontSize: textSize,
+                fontWeight: FontWeight.w500,
+              ),
+            ),
+          ]
+        ),
       ),
     );
   }

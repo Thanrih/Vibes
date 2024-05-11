@@ -6,6 +6,7 @@ import 'package:sakugaacaptors/pages/saved.dart';
 import 'package:sakugaacaptors/pages/settings.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:sakugaacaptors/pages/reading.dart';
+import 'package:sakugaacaptors/pages/profile.dart';
 
 void main() async {
   //Estou fazendo a conexão com o supabase por aqui
@@ -46,17 +47,15 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Sakugaa Captors',
-      theme: ThemeData(
-        useMaterial3: true, // Enable Material 3 theme
-      ),
       home: Scaffold(//cria a navbar
         body: _pages[_currentIndex],
 
         bottomNavigationBar: NavigationBarTheme(
           data: NavigationBarThemeData(
+
             labelTextStyle:MaterialStateProperty.all(
               const TextStyle(color: Colors.white),
-            )),
+            ),),
           child: NavigationBar(
               selectedIndex: _currentIndex,
               onDestinationSelected: _onItemTapped,
@@ -64,20 +63,28 @@ class _MyAppState extends State<MyApp> {
               backgroundColor: Colors.black,
               destinations: const [
                 NavigationDestination(
-                  icon: Icon(Icons.home),
+                  icon: Icon(Icons.home,color: Colors.white,),
+                  selectedIcon: Icon(Icons.home,color: Colors.black,),
+
                   label: 'Home',
+
 
                 ),
                 NavigationDestination(
-                  icon: Icon(Icons.history_edu_outlined),
+                  icon: Icon(Icons.history_edu_outlined,color: Colors.white,),
+                  selectedIcon: Icon(Icons.history_edu_outlined,color: Colors.black,),
                   label: 'Histórico',
+
                 ),
                 NavigationDestination(
-                  icon: Icon(Icons.save),
+                  icon: Icon(Icons.save,color: Colors.white),
+                  selectedIcon: Icon(Icons.save,color: Colors.black,),
                   label: 'Salvos',
                 ),
                 NavigationDestination(
-                  icon: Icon(Icons.settings),
+                  icon: Icon(Icons.settings,color: Colors.white),
+                  selectedIcon: Icon(Icons.settings,color: Colors.black,),
+
                   label: 'Configurações',
                 ),
               ],
@@ -91,6 +98,7 @@ class _MyAppState extends State<MyApp> {
         'pages/config': (context) => const ConfigPage(),
         'pages/desc': (context) => const ObraDescPage(),
         'pages/obra': (context) => const ReadingPage(),
+        'pages/profile': (context) => const Profile(),
       }
     );
   }

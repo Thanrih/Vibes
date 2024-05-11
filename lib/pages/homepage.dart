@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:sakugaacaptors/pages/profile.dart';
 import '../assets/card.dart';
-import 'package:supabase_flutter/supabase_flutter.dart';
 
 //defino statefull
 class MyHomePage extends StatefulWidget {
@@ -17,61 +17,102 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      extendBodyBehindAppBar: true,
       backgroundColor: Colors.black54,
-      appBar:AppBar(
-          forceMaterialTransparency:true,
-          clipBehavior: Clip.antiAlias,
-          actions: [IconButton(icon: const Icon(Icons.person),color: Colors.white, onPressed: () {})],),
-      body: Column(
-        children: [
-          CarouselSlider(
-
-            items: [
-              ...List.generate(
-                3,
-                    (index) => Container(
-                  child: const MangaCard(
-                    imageUrl: "",
-                    title: '',
-                    subtitle: '',
-                    textSize: 10,
-                  ),
-                ),
+      appBar: AppBar(
+        backgroundColor: Colors.transparent,
+        elevation: 0,
+        actions: [
+          IconButton(
+            icon: Container(
+              decoration: BoxDecoration(
+                backgroundBlendMode: BlendMode.darken,
+                  shape: BoxShape.circle,
+                  color: Colors.black.withOpacity(0.3)
               ),
-            ],
-            options: CarouselOptions(
-              autoPlay: true,
-              autoPlayCurve: Curves.fastOutSlowIn,
-              autoPlayAnimationDuration: const Duration(milliseconds: 500),
-              height: 300,
-
-              viewportFraction: 0.8,
-              initialPage: 0,
-              enableInfiniteScroll: true,
-              reverse: false,
-              enlargeCenterPage: true,
-              scrollDirection: Axis.horizontal,
+              child: const Icon(
+                Icons.person,
+                color: Colors.white,
+              ),
             ),
+            onPressed: () {
+              Navigator.of(context).push(MaterialPageRoute(builder: (context) => const Profile()));
+            },
           ),
-          Column(
-            children: [
-              const Text('Recentes'),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: List.generate(
+        ],
+      ),
+
+
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            CarouselSlider(
+        
+              items: [
+                ...List.generate(
                   3,
-                      (index) => Container(
-                    width: 100,
-                    height: 100,
-                    child: const Center(
-                      child: MangaCard(imageUrl: '', title: 'asas',textSize: 15),
+                      (index) => const MangaCard(
+                        imageUrl: "",
+                        title: '',
+                        textSize: 0, desc: '',
+                      ),
+                ),
+              ],
+              options: CarouselOptions(
+                autoPlay: true,
+                autoPlayCurve: Curves.fastOutSlowIn,
+                autoPlayAnimationDuration: const Duration(milliseconds: 500),
+                height: 450,
+                viewportFraction: 0.8,
+                initialPage: 0,
+        
+                enableInfiniteScroll: true,
+                reverse: false,
+                enlargeCenterPage: false,
+                scrollDirection: Axis.horizontal,
+              ),
+            ),
+            Column(
+              children: [
+                const Column(
+                  children: [
+                    Text('Recentes',textAlign: TextAlign.start,style: TextStyle(color: Colors.white)),
+                  ],
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: List.generate(
+                    3,
+                        (index) => Container(
+                      width: 100,
+                      height: 160,
+                      child: const Center(
+                        child: MangaCard(imageUrl: '', title: 'titulo hype',textSize: 11,desc: '',textPadding: 3,),
+                      ),
                     ),
                   ),
                 ),
-              ),
-            ],
-          ),
-        ],
+                Column(
+                  children: [const Text('Mais lidos',textAlign: TextAlign.start,style: TextStyle(color: Colors.white)),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: List.generate(
+                        3,
+                            (index) => Container(
+                          width: 100,
+                          height: 160,
+                          child: const Center(
+                            child: MangaCard(imageUrl: '', title: 'titulo hype',textSize: 11,desc: '',textPadding: 3,),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ],
+            ),
+          ],
+        ),
       ),
     );
 
