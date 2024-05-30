@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
-import 'package:sakugaacaptors/pages/profile.dart';
+import 'package:sakugaacaptors/pages/login.dart';
 import '../assets/card.dart';
 
 //defino statefull
@@ -11,14 +11,14 @@ class MyHomePage extends StatefulWidget {
   //defino a estate
   _MyHomePageState createState() => _MyHomePageState();
 }
- //incremento os estados
+//incremento os estados
 class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       extendBodyBehindAppBar: true,
-      backgroundColor: Colors.black54,
+      backgroundColor: Colors.black,
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         elevation: 0,
@@ -26,7 +26,7 @@ class _MyHomePageState extends State<MyHomePage> {
           IconButton(
             icon: Container(
               decoration: BoxDecoration(
-                backgroundBlendMode: BlendMode.darken,
+                  backgroundBlendMode: BlendMode.darken,
                   shape: BoxShape.circle,
                   color: Colors.black.withOpacity(0.3)
               ),
@@ -36,7 +36,7 @@ class _MyHomePageState extends State<MyHomePage> {
               ),
             ),
             onPressed: () {
-              Navigator.of(context).push(MaterialPageRoute(builder: (context) => const Profile()));
+              Navigator.of(context).push(MaterialPageRoute(builder: (context) => LoginPage()));
             },
           ),
         ],
@@ -47,15 +47,15 @@ class _MyHomePageState extends State<MyHomePage> {
         child: Column(
           children: [
             CarouselSlider(
-        
+
               items: [
                 ...List.generate(
                   3,
                       (index) => const MangaCard(
-                        imageUrl: "",
-                        title: '',
-                        textSize: 0, desc: '',
-                      ),
+                    imageUrl: "",
+                    title: '',
+                    textSize: 0, desc: '',
+                  ),
                 ),
               ],
               options: CarouselOptions(
@@ -65,7 +65,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 height: 450,
                 viewportFraction: 0.8,
                 initialPage: 0,
-        
+
                 enableInfiniteScroll: true,
                 reverse: false,
                 enlargeCenterPage: false,
@@ -75,10 +75,16 @@ class _MyHomePageState extends State<MyHomePage> {
             Column(
               children: [
                 const Column(
-                  children: [
-                    Text('Recentes',textAlign: TextAlign.start,style: TextStyle(color: Colors.white)),
-                  ],
-                ),
+                    children: [
+                      Padding(
+                        padding: EdgeInsets.only(left: 20,top: 8,bottom: 8),
+                        child: Row(
+                          children: [
+                            Text('Mais lidos',textAlign: TextAlign.start,style: TextStyle(color: Colors.white)),
+                          ],
+                        ),
+                      ),
+                    ]),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: List.generate(
@@ -87,13 +93,21 @@ class _MyHomePageState extends State<MyHomePage> {
                       width: 100,
                       height: 160,
                       child: const Center(
-                        child: MangaCard(imageUrl: '', title: 'titulo hype',textSize: 11,desc: '',textPadding: 3,),
+                        child: MangaCard(imageUrl: '', title: 'titulo hype',textSize: 11,desc: '',textPadding: 3),
                       ),
                     ),
                   ),
                 ),
                 Column(
-                  children: [const Text('Mais lidos',textAlign: TextAlign.start,style: TextStyle(color: Colors.white)),
+                  children: [
+                    const Padding(
+                      padding: EdgeInsets.only(left: 20,top: 8,bottom: 8),
+                      child: Row(
+                        children: [
+                          Text('Mais lidos',textAlign: TextAlign.start,style: TextStyle(color: Colors.white)),
+                        ],
+                      ),
+                    ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: List.generate(

@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:carousel_slider/carousel_slider.dart';
-import '../assets/card.dart';
 
 class HistoryPage extends StatelessWidget {
 

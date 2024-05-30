@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 
 class MangaCard extends StatelessWidget {
@@ -27,22 +29,27 @@ class MangaCard extends StatelessWidget {
       child: Container(
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(0),
-          color: Colors.white,
+          color: Colors.transparent,
         ),
         child: Column(
           children: [
-            Image.network(
-              imageUrl.isNotEmpty ? imageUrl : 'https://lermangas.me/wp-content/uploads/2024/02/nossa-alianca-secreta.jpg',
-              loadingBuilder: (context, child, loadingProgress) {
-                if (loadingProgress == null) return child;
-                return CircularProgressIndicator(); // Exibe um indicador circular enquanto a imagem carrega
-              },
-              fit: BoxFit.contain,
+            Container(
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(200),
+              ),
+              child: Image.network(
+                imageUrl.isNotEmpty ? imageUrl : 'https://lermangas.me/wp-content/uploads/2024/02/nossa-alianca-secreta.jpg',
+                loadingBuilder: (context, child, loadingProgress) {
+                  if (loadingProgress == null) return child;
+                  return const CircularProgressIndicator(); // Exibe um indicador circular enquanto a imagem carrega
+                },
+                fit: BoxFit.contain,
+              ),
             ),
             Text(
               title,
               style: TextStyle(
-                color: Colors.black,
+                color: Colors.white,
                 fontSize: textSize,
                 fontWeight: FontWeight.w500,
               ),

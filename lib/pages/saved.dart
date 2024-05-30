@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import '../assets/card.dart';
 
 class SavedPage extends StatelessWidget {
 

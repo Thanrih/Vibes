@@ -7,12 +7,12 @@ class MyButton extends StatefulWidget {
   final double height; // Altura do botão
 
   const MyButton({
-    Key? key,
+    super.key,
     required this.onTap,
     required this.buttonText,
     required this.width,
     required this.height,
-  }) : super(key: key);
+  });
 
   @override
   _MyButtonState createState() => _MyButtonState();
@@ -57,7 +57,7 @@ class _MyButtonState extends State<MyButton> {
       child: Container(
         width: widget.width, // Definindo a largura do botão
         height: widget.height, // Definindo a altura do botão
-        padding: const EdgeInsets.all(25),
+        padding: const EdgeInsets.all(10),
         margin: const EdgeInsets.symmetric(horizontal: 25),
         decoration: BoxDecoration(
           color: _getBackgroundColor(),

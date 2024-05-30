@@ -1,63 +1,140 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:sakugaacaptors/assets/card.dart'; // Assuming this defines a card widget
 import 'package:sakugaacaptors/assets/my_button.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
 
-class ObraDescPage extends StatelessWidget {
+final supabase = Supabase.instance.client;
+
+class ObraDescPage extends StatefulWidget {
+
   const ObraDescPage({super.key});
+
+  @override
+  State<ObraDescPage> createState() => _ObraDescPageState();
+}
+
+class _ObraDescPageState extends State<ObraDescPage> {
+  late Future<Map<String, dynamic>?> _future;
+
+  @override
+  void initState() {
+    super.initState();
+    _future = _fetchImageUrl();
+  }
+
+  Future<Map<String, dynamic>?> _fetchImageUrl() async {
+    final response = await supabase
+        .from('Obras')
+        .select('ImageUrl')
+        .eq('id', 2)
+        .single();
+    return response;
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Description'), // Use constant for text that doesn't change
+        title: const Text('Description'),
       ),
-      body: SingleChildScrollView( // Wrap content with SingleChildScrollView for scrollable content
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            // Use a Card widget from your assets (if applicable)
-            Row(
+      body: FutureBuilder<Map<String, dynamic>?>(
+        future: _future,
+        builder: (context, snapshot) {
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return const Center(child: CircularProgressIndicator());
+          } else if (snapshot.hasError) {
+            return Center(child: Text('Error: ${snapshot.error}'));
+          } else if (!snapshot.hasData || snapshot.data == null) {
+            return const Center(child: Text('No data found'));
+          }
+
+          final imageUrl = snapshot.data?['ImageUrl'];
+          final obraName = snapshot.data?['Name'];
+
+          return SingleChildScrollView(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Card( // Assuming Card widget displays the image
-                  child: Image.network(
-                    'https://lermangas.me/wp-content/uploads/2024/02/hazure-aka-madoushi-wa-kenja-time-ni-musou-suru.jpg', // Replace 'src' with the actual image URL
-                  ),
-                ),
-                const Expanded(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start, // Align text to the start
-                    children: [
-                      Text(
-                        'Hazure Aka Madoushi wa Kenja Time ni Musou suru',
-                        style: TextStyle(fontWeight: FontWeight.bold), // Optional for bold title
-                      ),
-                      // Add spacing between text and image
-                      Wrap( // Wrap the text to allow line breaks
+                if (imageUrl != null)
+                  Card(
+                    child: Image.network(
+                      imageUrl,
+
+                      width: 260,
+                    ),
+                  )
+                else
+                  const Text('Image URL not found'),
+                const Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Text(
+                      'oi',
+                      style: TextStyle(fontWeight: FontWeight.bold),
+                    ),
+                    SizedBox(height: 10.0),
+                    Center(
+                      child: Wrap(
                         children: [
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Chip(
+                                label: Text('Ação'),
+                              ),
+                              SizedBox(width: 10.0),
+                              Chip(
+                                label: Text('Comédia'),
+                              ),
+                              SizedBox(width: 10.0),
+                              Chip(
+                                label: Text('Fantasia'),
+                              ),
+                            ],
+                          ),
                           Text(
-                            'Leon é um mago vermelho fracassado que falha constantemente nas mudanças de classe – como resultado,'
-                                ' ele atua como um suporte para sua equipe de aventureiros, Wolf Fang Sword. Eventualmente, como todas'
-                                ' as séries fazem, ele é ele expulso da equipe por não ser forte o suficiente. No entanto, depois de'
-                                ' deixar a equipe, Leon descobre que foi sufocado por sua própria equipe. e acontece que ele pode'
-                                ' lutar perfeitamente bem sozinho. Sem falar que sua classe Sage tem um poder oculto que só'
-                                ' ativa em certas condições…', maxLines: 10,
+                            'Leon é um mago vermelho fracassado que falha constantemente nas mudanças de classe – como resultadoasdfaafasdfasdfasdfasdf',
+                            maxLines: 10,
+                            textAlign: TextAlign.center,
                           ),
                         ],
-                      )
-                    ],
-
-                  ),
+                      ),
+                    ),
+                  ],
                 ),
+                const SizedBox(height: 20.0),
+                MyButton(
+                  onTap: () => Navigator.pushNamed(context, 'pages/obra'),
+                  buttonText: 'Ler',
+                  width: 170.0,
+                  height: 60.0,
+                ),
+                const SizedBox(height: 10.0),
               ],
             ),
+          );
+        },
+      ),
+      bottomNavigationBar: NavigationBarTheme(
+        data: NavigationBarThemeData(
 
-            const SizedBox(height: 20.0), // Add spacing between elements
-            MyButton(
-              onTap: () => Navigator.pushNamed(context, 'pages/obra'), // Route to target page
-              buttonText: 'Ler', // Assuming 'Ler' means 'Read' in Portuguese
-              width: 200.0,
-              height: 100.0,
+          labelTextStyle:MaterialStateProperty.all(
+            const TextStyle(color: Colors.white),
+          ),),
+        child: NavigationBar(
+          indicatorColor: Colors.white,
+          backgroundColor: Colors.black,
+          destinations: const [
+            NavigationDestination(
+              icon: Icon(Icons.description,color: Colors.white,),
+              selectedIcon: Icon(Icons.description,color: Colors.black,),
+
+              label: 'Description',
+            ),
+            NavigationDestination(
+              icon: Icon(Icons.book,color: Colors.white,),
+              selectedIcon: Icon(Icons.pages_outlined,color: Colors.black,),
+              label: 'Histórico',
             ),
           ],
         ),

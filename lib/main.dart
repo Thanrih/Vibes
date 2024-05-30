@@ -1,15 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:sakugaacaptors/pages/history.dart';
 import 'package:sakugaacaptors/pages/homepage.dart';
+import 'package:sakugaacaptors/pages/login.dart';
 import 'package:sakugaacaptors/pages/obradesc.dart';
+import 'package:sakugaacaptors/pages/register.dart';
 import 'package:sakugaacaptors/pages/saved.dart';
 import 'package:sakugaacaptors/pages/settings.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:sakugaacaptors/pages/reading.dart';
 import 'package:sakugaacaptors/pages/profile.dart';
 
-void main() async {
+Future<void> main() async {
   //Estou fazendo a conexão com o supabase por aqui
+  WidgetsFlutterBinding.ensureInitialized();
   await Supabase.initialize(
     url: 'https://xyewkeuvgrephjahsjds.supabase.co',
     anonKey: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inh5ZXdrZXV2Z3JlcGhqYWhzamRzIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MTQxMzYyNTQsImV4cCI6MjAyOTcxMjI1NH0.nPl6lx6KEUKtScJGPBanQBui5MmZtLHtdYJbJRyY2Fo',
@@ -33,8 +36,8 @@ class _MyAppState extends State<MyApp> {
     const MyHomePage(),
     const HistoryPage(),
     const SavedPage(),
-    const ConfigPage()
-  ];
+    const ConfigPage(),
+      ];
 
 //altera o estado da navbar quando um item for selecionado
   void _onItemTapped(int index) {
@@ -46,7 +49,8 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Sakugaa Captors',
+      debugShowCheckedModeBanner: false,
+      title: 'Sakuga Captors',
       home: Scaffold(//cria a navbar
         body: _pages[_currentIndex],
 
@@ -99,6 +103,8 @@ class _MyAppState extends State<MyApp> {
         'pages/desc': (context) => const ObraDescPage(),
         'pages/obra': (context) => const ReadingPage(),
         'pages/profile': (context) => const Profile(),
+        'pages/login': (context) => LoginPage(),
+        'pages/register': (context) => RegisterPage(),
       }
     );
   }
