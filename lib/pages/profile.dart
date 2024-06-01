@@ -15,7 +15,8 @@ class Profile extends StatelessWidget {
         children: [
           Row(
             children: [
-              Icon(Icons.person_2_rounded, color: Colors.white),
+              Icon(Icons.person_2_rounded,
+                  color: Colors.white),
             ],
           )
         ],

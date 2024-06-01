@@ -71,7 +71,7 @@ class LoginPage extends StatelessWidget {
               ),
               const SizedBox(height: 10),
               MyButton(
-                  onTap: userSignIn, buttonText: 'Login', width: 150, height: 70,),
+                  onTap: userSignIn, buttonText: 'Login', width: 150, height: 70, colorAway: Colors.white, colorPressed: Colors.black, borderColorAway: Colors.black, borderColorPressed: Colors.white,),
               const SizedBox(height: 10),
 
 

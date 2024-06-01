@@ -1,8 +1,7 @@
-import 'dart:ui';
 
 import 'package:flutter/material.dart';
 
-class MangaCard extends StatelessWidget {
+class CarousselImage extends StatelessWidget {
   final String imageUrl;
   final String title;
   final String badge;
@@ -11,8 +10,8 @@ class MangaCard extends StatelessWidget {
   final double textSize;
   final int id;
 
-  const MangaCard({
-    Key? key,
+  const CarousselImage ({
+    super.key,
     required this.id,
     this.textPadding = 0,
     required this.imageUrl,
@@ -20,7 +19,7 @@ class MangaCard extends StatelessWidget {
     this.textSize = 0,
     this.badge = '',
     required this.desc,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -31,19 +30,17 @@ class MangaCard extends StatelessWidget {
       },
       child: Container(
         decoration: BoxDecoration(
+
           borderRadius: BorderRadius.circular(0),
           color: Colors.transparent,
         ),
         child: Column(
           children: [
-            Flexible(
+            // Use BoxFit.cover for image to fill container
+            Expanded(
               child: Image.network(
-                imageUrl.isNotEmpty
-                    ? imageUrl
-                    : 'https://lermangas.me/wp-content/uploads/2024/02/nossa-alianca-secreta.jpg',
-                fit: BoxFit.cover,
-                width: 100,
-                height: 500,
+                imageUrl.isNotEmpty ? imageUrl : 'https://lermangas.me/wp-content/uploads/2024/02/nossa-alianca-secreta.jpg',
+                fit: BoxFit.cover, // Ensure image fills container
               ),
             ),
             Text(

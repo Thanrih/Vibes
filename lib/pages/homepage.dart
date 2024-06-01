@@ -1,18 +1,25 @@
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
-import 'package:sakugaacaptors/pages/login.dart';
-import '../assets/card.dart';
+import 'package:sakugaacaptors/assets/carrousselImages.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
+import 'package:sakugaacaptors/assets/card.dart';
+import 'login.dart';
+import 'package:horizontal_list_view/horizontal_list_view.dart';
 
-//defino statefull
+final supabase = Supabase.instance.client;
+
 class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key});
+  const MyHomePage({Key? key});
 
   @override
-  //defino a estate
   _MyHomePageState createState() => _MyHomePageState();
 }
-//incremento os estados
+
 class _MyHomePageState extends State<MyHomePage> {
+  Future<List<Map<String, dynamic>>> _data() async {
+    final response = await supabase.from('Obras').select('*');
+    return response;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -26,9 +33,9 @@ class _MyHomePageState extends State<MyHomePage> {
           IconButton(
             icon: Container(
               decoration: BoxDecoration(
-                  backgroundBlendMode: BlendMode.darken,
-                  shape: BoxShape.circle,
-                  color: Colors.black.withOpacity(0.3)
+                backgroundBlendMode: BlendMode.darken,
+                shape: BoxShape.circle,
+                color: Colors.black.withOpacity(0.3),
               ),
               child: const Icon(
                 Icons.person,
@@ -36,99 +43,136 @@ class _MyHomePageState extends State<MyHomePage> {
               ),
             ),
             onPressed: () {
-              Navigator.of(context).push(MaterialPageRoute(builder: (context) => LoginPage()));
+              Navigator.of(context)
+                  .push(MaterialPageRoute(builder: (context) => LoginPage()));
             },
           ),
         ],
       ),
-
-
       body: SingleChildScrollView(
         child: Column(
           children: [
-            CarouselSlider(
+            FutureBuilder<List<Map<String, dynamic>>>(
+              future: _data(),
+              builder: (context, snapshot) {
+                if (snapshot.connectionState == ConnectionState.waiting) {
+                  return const CircularProgressIndicator();
+                } else if (snapshot.hasError) {
+                  return Text('Error: ${snapshot.error}');
+                } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
+                  return const Text('No images found');
+                } else {
+                  final dataList = snapshot.data!.sublist(0, 3); // Peguei os primeiros 3 itens da lista
 
-              items: [
-                ...List.generate(
-                  3,
-                      (index) => const MangaCard(
-                    imageUrl: "",
-                    title: '',
-                    textSize: 0, desc: '',
-                  ),
-                ),
-              ],
-              options: CarouselOptions(
-                autoPlay: true,
-                autoPlayCurve: Curves.fastOutSlowIn,
-                autoPlayAnimationDuration: const Duration(milliseconds: 500),
-                height: 450,
-                viewportFraction: 0.8,
-                initialPage: 0,
-
-                enableInfiniteScroll: true,
-                reverse: false,
-                enlargeCenterPage: false,
-                scrollDirection: Axis.horizontal,
-              ),
+                  return CarouselSlider(
+                    items: dataList.map((data) {
+                      return CarousselImage(
+                        imageUrl: data['ImageUrl'],
+                        title: '',
+                        textSize: 0,
+                        desc: '',
+                        id: data['id'],
+                      );
+                    }).toList(),
+                    options: CarouselOptions(
+                      autoPlay: true,
+                      autoPlayCurve: Curves.fastOutSlowIn,
+                      autoPlayAnimationDuration: const Duration(milliseconds: 500),
+                      height: 360,
+                      viewportFraction: 0.8,
+                      initialPage: 0,
+                      enableInfiniteScroll: true,
+                      reverse: false,
+                      enlargeCenterPage: false,
+                      scrollDirection: Axis.horizontal,
+                    ),
+                  );
+                }
+              },
             ),
-            Column(
+            const SizedBox(height: 10),
+            const Row(
+              mainAxisAlignment: MainAxisAlignment.start,
               children: [
-                const Column(
-                    children: [
-                      Padding(
-                        padding: EdgeInsets.only(left: 20,top: 8,bottom: 8),
-                        child: Row(
-                          children: [
-                            Text('Mais lidos',textAlign: TextAlign.start,style: TextStyle(color: Colors.white)),
-                          ],
-                        ),
-                      ),
-                    ]),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: List.generate(
-                    3,
-                        (index) => Container(
-                      width: 100,
-                      height: 160,
-                      child: const Center(
-                        child: MangaCard(imageUrl: '', title: 'titulo hype',textSize: 11,desc: '',textPadding: 3),
-                      ),
-                    ),
-                  ),
-                ),
-                Column(
-                  children: [
-                    const Padding(
-                      padding: EdgeInsets.only(left: 20,top: 8,bottom: 8),
-                      child: Row(
-                        children: [
-                          Text('Mais lidos',textAlign: TextAlign.start,style: TextStyle(color: Colors.white)),
-                        ],
-                      ),
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: List.generate(
-                        3,
-                            (index) => Container(
-                          width: 100,
-                          height: 160,
-                          child: const Center(
-                            child: MangaCard(imageUrl: '', title: 'titulo hype',textSize: 11,desc: '',textPadding: 3,),
-                          ),
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
+                Text('Novos', style: TextStyle(fontSize: 20, color: Colors.white,)),
               ],
+            ),
+            FutureBuilder<List<Map<String, dynamic>>>(
+              future: _data(),
+              builder: (context, snapshot) {
+                if (snapshot.connectionState == ConnectionState.waiting) {
+                  return const CircularProgressIndicator();
+                } else if (snapshot.hasError) {
+                  return Text('Error: ${snapshot.error}');
+                } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
+                  return const Text('No images found');
+                } else {
+                  final dataList = snapshot.data!.sublist(0, 4); // Peguei os primeiros 3 itens da lista
+
+                  return SizedBox(
+                    height: 150,
+
+                    child: HorizontalListView(
+                      crossAxisCount: 4,
+                      crossAxisSpacing: 10,
+                      children: dataList.map((data) {
+                        return MangaCard(
+                          imageUrl: data['ImageUrl'],
+                          title: data['Name'],
+                          textSize: 15,
+                          textPadding: 20,
+                          desc: '',
+                          id: data['id'],
+                        );
+                      }).toList(),
+                    ),
+                  );
+                }
+              },
+            ),
+            const SizedBox(height: 10),
+            FutureBuilder<List<Map<String, dynamic>>>(
+              future: _data(),
+              builder: (context, snapshot) {
+                if (snapshot.connectionState == ConnectionState.waiting) {
+                  return const CircularProgressIndicator();
+                } else if (snapshot.hasError) {
+                  return Text('Error: ${snapshot.error}');
+                } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
+                  return const Text('No images found');
+                } else {
+                  final dataList = snapshot.data!.sublist(0, 4); // Peguei os primeiros 3 itens da lista
+
+                  return SizedBox(
+                    height: 150,
+
+                    child: HorizontalListView(
+
+                      crossAxisCount: 3,
+                      crossAxisSpacing: 10,
+                      children: dataList.map((data) {
+                        return Container(
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                          child: MangaCard(
+                            imageUrl: data['ImageUrl'],
+                            title: data['Name'],
+                            textSize: 15,
+                            textPadding: 10,
+                            desc: '',
+                            id: data['id'],
+                          ),
+                        );
+                      }).toList(),
+                    ),
+                  );
+                }
+              },
             ),
           ],
         ),
       ),
     );
-
   }
 }

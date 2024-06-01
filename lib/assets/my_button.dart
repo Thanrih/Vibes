@@ -5,6 +5,11 @@ class MyButton extends StatefulWidget {
   final String buttonText;
   final double width; // Largura do botão
   final double height; // Altura do botão
+  final Color colorAway;
+  final Color colorPressed;
+  final Color borderColorAway;
+  final Color borderColorPressed;
+
 
   const MyButton({
     super.key,
@@ -12,6 +17,10 @@ class MyButton extends StatefulWidget {
     required this.buttonText,
     required this.width,
     required this.height,
+    required this.colorAway,
+    required this.colorPressed,
+    required this.borderColorAway,
+    required this.borderColorPressed,
   });
 
   @override
@@ -22,15 +31,15 @@ class _MyButtonState extends State<MyButton> {
   bool _isPressed = false;
 
   Color _getBackgroundColor() {
-    return _isPressed ? Colors.white : Colors.black;
+    return _isPressed ? widget.colorPressed : widget.colorAway;
   }
 
   Color _getTextColor() {
-    return _isPressed ? Colors.black : Colors.white;
+    return _isPressed ? widget.colorAway : widget.colorPressed;
   }
 
   Color _getBorderColor() {
-    return _isPressed ? Colors.black : Colors.transparent;
+    return _isPressed ? widget.colorAway : widget.colorPressed;
   }
 
   @override
