@@ -92,9 +92,13 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
             const SizedBox(height: 10),
             const Row(
-              mainAxisAlignment: MainAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text('Novos', style: TextStyle(fontSize: 20, color: Colors.white,)),
+                Padding(
+                  padding: EdgeInsets.fromLTRB(8.0,0,0,0),
+                  child: Text('Novos', style: TextStyle(fontSize: 20, color: Colors.white,)),
+                ),
+                Icon(Icons.chevron_right, color: Colors.white),
               ],
             ),
             FutureBuilder<List<Map<String, dynamic>>>(
@@ -131,6 +135,16 @@ class _MyHomePageState extends State<MyHomePage> {
               },
             ),
             const SizedBox(height: 10),
+            const Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Padding(
+                  padding: EdgeInsets.fromLTRB(8.0,0,0,0),
+                  child: Text('Novos', style: TextStyle(fontSize: 20, color: Colors.white,)),
+                ),
+                Icon(Icons.chevron_right, color: Colors.white),
+              ],
+            ),
             FutureBuilder<List<Map<String, dynamic>>>(
               future: _data(),
               builder: (context, snapshot) {
@@ -147,22 +161,16 @@ class _MyHomePageState extends State<MyHomePage> {
                     height: 150,
 
                     child: HorizontalListView(
-
-                      crossAxisCount: 3,
+                      crossAxisCount: 4,
                       crossAxisSpacing: 10,
                       children: dataList.map((data) {
-                        return Container(
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(10),
-                          ),
-                          child: MangaCard(
-                            imageUrl: data['ImageUrl'],
-                            title: data['Name'],
-                            textSize: 15,
-                            textPadding: 10,
-                            desc: '',
-                            id: data['id'],
-                          ),
+                        return MangaCard(
+                          imageUrl: data['ImageUrl'],
+                          title: data['Name'],
+                          textSize: 15,
+                          textPadding: 20,
+                          desc: '',
+                          id: data['id'],
                         );
                       }).toList(),
                     ),

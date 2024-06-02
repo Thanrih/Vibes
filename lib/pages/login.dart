@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:sakugaacaptors/assets/my_button.dart';
@@ -30,18 +31,16 @@ class LoginPage extends StatelessWidget {
           child: Column(
             children: [
               Container(
-                padding: const EdgeInsets.symmetric(vertical: 50.0, horizontal: 0),
+                padding: const EdgeInsets.symmetric(vertical: 30.0, horizontal: 0),
                   child: const Text('Login', style: TextStyle(
                   color: Colors.black54,
                   fontSize: 25,
               ),
               )),
 
-              const SizedBox(height: 50),
               //icone de fechadura
-              Image.network('https://cdn2.iconfinder.com/data/icons/general-ui-outlined/16/profile-256.png',
-                  height: 70),
-              const SizedBox(height: 50),
+              Image.network('https://xyewkeuvgrephjahsjds.supabase.co/storage/v1/object/public/Icons/WhatsApp_Image_2024-05-06_at_21.10_2.png?t=2024-06-02T14%3A46%3A34.634Z',
+                  height: 200),
               Text(
                 'Seja bem-vindo!',
                 style: TextStyle(
@@ -51,10 +50,10 @@ class LoginPage extends StatelessWidget {
               ),
               const SizedBox(height: 25),
               //nome
-              MyTextField(controller: emailControler,obscureText: false,hintText: 'Login',),//username
+              MyTextField(controller: emailControler,obscureText: false,hintText: 'E-mail',),//username
               const SizedBox(height: 25),
               //senha
-              MyTextField(controller: passwordController,obscureText: true,hintText: 'password',),//password
+              MyTextField(controller: passwordController,obscureText: true,hintText: 'Senha',),//password
               const SizedBox(height: 10),
               //esqueceu a senha?
               Padding(
@@ -109,7 +108,7 @@ class LoginPage extends StatelessWidget {
                   SquareTile(imagePath: 'https://cdn3.iconfinder.com/data/icons/picons-social/57/16-apple-512.png')
                 ],
               ),
-              Container(child: const SizedBox(height: 30)),
+              SizedBox.fromSize(child: const SizedBox(height: 30)),
               ElevatedButton(
                 onPressed: () {
                   // Handle button press action (e.g., navigate to registration page)

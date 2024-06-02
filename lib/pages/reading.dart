@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
@@ -20,7 +19,6 @@ class _ReadingPageState extends State<ReadingPage> {
 
   Future<List<String>> fetchImages() async {
     final response = await Supabase.instance.client.storage.from('Pages').list(path: 'kaiju/1');
-
     // Map each file to its public URL
     final List<String> imageUrls = response.map((file) {
       final publicUrl = Supabase.instance.client.storage
