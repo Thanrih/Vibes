@@ -39,9 +39,11 @@ class _ObraDescPageState extends State<ObraDescPage> {
     _future = _fetchImageUrl(id);
 
     return Scaffold(
+      extendBodyBehindAppBar: true,
       appBar: AppBar(
-        title: const Text('Description', style: TextStyle(color: Colors.white)),
         backgroundColor: Colors.transparent,
+        iconTheme: const IconThemeData(color: Colors.white),
+        foregroundColor: Colors.transparent,
       ),
       backgroundColor: Colors.black,
       body: FutureBuilder<Map<String, dynamic>?>(
@@ -64,6 +66,7 @@ class _ObraDescPageState extends State<ObraDescPage> {
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
+                SizedBox.fromSize(size: Size.fromHeight(60)),
                 if (imageUrl != null)
                   Card(
                     child: Image.network(
@@ -114,8 +117,9 @@ class _ObraDescPageState extends State<ObraDescPage> {
                         SingleChildScrollView(
                           child: Container(
                             padding: const EdgeInsets.all(20.0),
-                            width: 200.0,
-                            height: 200.0,
+                            width: 400.0,
+                            height: 200,
+
                             alignment: Alignment.center,
                             child: Text(
                               obraDesc,
@@ -150,7 +154,7 @@ class _ObraDescPageState extends State<ObraDescPage> {
                 const SizedBox(height: 20.0),
 
                 MyButton(
-                  onTap: () => Navigator.pushNamed(context, 'pages/obra'),
+                  onTap: () => Navigator.pushNamed(context, 'pages/obra', arguments: id),
                   buttonText: 'Ler',
                   width: 170.0,
                   height: 60.0,

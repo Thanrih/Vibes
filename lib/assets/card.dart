@@ -1,5 +1,3 @@
-import 'dart:ui';
-
 import 'package:flutter/material.dart';
 
 class MangaCard extends StatelessWidget {
@@ -42,18 +40,16 @@ class MangaCard extends StatelessWidget {
                     ? imageUrl
                     : 'https://lermangas.me/wp-content/uploads/2024/02/nossa-alianca-secreta.jpg',
                 fit: BoxFit.cover,
-                width: 100,
                 height: 500,
               ),
             ),
             Text(
               title,
-              style: TextStyle(
-                color: Colors.white,
-                fontSize: textSize,
-                fontWeight: FontWeight.w500,
+                style: TextStyle(fontSize: textSize, color: Colors.white),
+                maxLines: 1, // Limita a uma linha
+
+                overflow: TextOverflow.ellipsis, // Adiciona "..." se o texto for muito longo
               ),
-            ),
           ],
         ),
       ),

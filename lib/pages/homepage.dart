@@ -111,7 +111,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
                   return const Text('No images found');
                 } else {
-                  final dataList = snapshot.data!.sublist(0, 4); // Peguei os primeiros 3 itens da lista
+                  final dataList = snapshot.data!.sublist(0, 5);
 
                   return SizedBox(
                     height: 150,
@@ -123,8 +123,8 @@ class _MyHomePageState extends State<MyHomePage> {
                         return MangaCard(
                           imageUrl: data['ImageUrl'],
                           title: data['Name'],
-                          textSize: 15,
-                          textPadding: 20,
+                          textSize: 16,
+                          textPadding: 0,
                           desc: '',
                           id: data['id'],
                         );
@@ -140,7 +140,7 @@ class _MyHomePageState extends State<MyHomePage> {
               children: [
                 Padding(
                   padding: EdgeInsets.fromLTRB(8.0,0,0,0),
-                  child: Text('Novos', style: TextStyle(fontSize: 20, color: Colors.white,)),
+                  child: Text('Mais lidos', style: TextStyle(fontSize: 20, color: Colors.white,)),
                 ),
                 Icon(Icons.chevron_right, color: Colors.white),
               ],

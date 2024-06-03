@@ -14,29 +14,26 @@ class _ReadingPageState extends State<ReadingPage> {
   @override
   void initState() {
     super.initState();
-    _futureImages = fetchImages();
   }
 
-  Future<List<String>> fetchImages() async {
-    final response = await Supabase.instance.client.storage.from('Pages').list(path: 'kaiju/1');
-    // Map each file to its public URL
-    final List<String> imageUrls = response.map((file) {
-      final publicUrl = Supabase.instance.client.storage
-          .from('Pages')
-          .getPublicUrl('kaiju/1/${file.name}');
+  Future<List<String>> fetchImages(String id) async {
+    final response = await Supabase.instance.client
+        .from('Pages')
+        .select('page')
+        .eq('id', id)
+        .single();
 
-      if (publicUrl == null) {
-        throw Exception('Failed to get public URL for ${file.name}');
-      }
-
-      return publicUrl;
-    }).toList();
-
-    return imageUrls;
+    final List<dynamic> pageUrls = response['page'];
+    return pageUrls.cast<String>();
   }
 
   @override
   Widget build(BuildContext context) {
+    final String id = (ModalRoute.of(context)?.settings.arguments).toString();
+
+    // Initialize the future in the build method
+    _futureImages = fetchImages(id);
+
     return Scaffold(
       appBar: AppBar(
         title: const Text('Reading Page'),
@@ -53,14 +50,18 @@ class _ReadingPageState extends State<ReadingPage> {
           }
 
           final imageUrls = snapshot.data!;
-          return ListView.builder(
-            itemCount: imageUrls.length,
-            itemBuilder: (context, index) {
-              final imageUrl = imageUrls[index];
-              return ListTile(
-                title: Image.network(imageUrl),
-              );
-            },
+          return Scrollbar(
+            child: ListView.builder(
+              itemCount: imageUrls.length,
+              itemBuilder: (context, index) {
+                final imageUrl = imageUrls[index];
+                return ListTile(
+                  minVerticalPadding: 0,
+                  horizontalTitleGap: 0,
+                  title: Image.network(imageUrl),
+                );
+              },
+            ),
           );
         },
       ),
