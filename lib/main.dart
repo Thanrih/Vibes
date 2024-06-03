@@ -37,7 +37,7 @@ class _MyAppState extends State<MyApp> {
     const HistoryPage(),
     const SavedPage(),
     const ConfigPage(),
-      ];
+  ];
 
 //altera o estado da navbar quando um item for selecionado
   void _onItemTapped(int index) {
@@ -49,18 +49,18 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Sakuga Captors',
-      home: Scaffold(//cria a navbar
-        body: _pages[_currentIndex],
+        debugShowCheckedModeBanner: false,
+        title: 'Sakuga Captors',
+        home: Scaffold(//cria a navbar
+          body: _pages[_currentIndex],
 
-        bottomNavigationBar: NavigationBarTheme(
-          data: NavigationBarThemeData(
+          bottomNavigationBar: NavigationBarTheme(
+            data: NavigationBarThemeData(
 
-            labelTextStyle:MaterialStateProperty.all(
-              const TextStyle(color: Colors.white),
-            ),),
-          child: NavigationBar(
+              labelTextStyle:MaterialStateProperty.all(
+                const TextStyle(color: Colors.white),
+              ),),
+            child: NavigationBar(
               selectedIndex: _currentIndex,
               onDestinationSelected: _onItemTapped,
               indicatorColor: Colors.white,
@@ -93,19 +93,19 @@ class _MyAppState extends State<MyApp> {
                 ),
               ],
             ),
+          ),
         ),
-      ),
-      routes: {
-        'pages/home': (context) => const MyHomePage(),
-        'pages/history': (context) => const HistoryPage(),
-        'pages/saved': (context) => const SavedPage(),
-        'pages/config': (context) => const ConfigPage(),
-        'pages/desc': (context) => const ObraDescPage(),
-        'pages/obra': (context) => const ReadingPage(),
-        'pages/profile': (context) => const Profile(),
-        'pages/login': (context) => LoginPage(),
-        'pages/register': (context) => RegisterPage(),
-      }
+        routes: {
+          'pages/home': (context) => const MyHomePage(),
+          'pages/history': (context) => const HistoryPage(),
+          'pages/saved': (context) => const SavedPage(),
+          'pages/config': (context) => const ConfigPage(),
+          'pages/desc': (context) => const ObraDescPage(),
+          'pages/obra': (context) => const ReadingPage(),
+          'pages/profile': (context) => const Profile(),
+          'pages/login': (context) => LoginPage(),
+          'pages/register': (context) => RegisterPage(),
+        }
     );
   }
 }

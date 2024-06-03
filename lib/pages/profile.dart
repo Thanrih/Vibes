@@ -9,7 +9,7 @@ class Profile extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.black26,
-      appBar: AppBar(title: Text('Profile')),
+      appBar: AppBar(title: const Text('Profile')),
       body: const Column(
         mainAxisAlignment: MainAxisAlignment.start,
         children: [

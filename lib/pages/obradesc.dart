@@ -107,12 +107,20 @@ class _ObraDescPageState extends State<ObraDescPage> {
                           ),
                       ],
                     ),
-                    const SizedBox(width: 20.0),
+
+                    const Center(
+                      child: Divider(
+                        color: Colors.white,
+                        indent: 100,
+                        endIndent: 100,
+                      ),
+                    ),
+
                     SingleChildScrollView(
                       child: Container(
                         padding: const EdgeInsets.all(20.0),
                         width: 400.0,
-                        height: 200,
+                        height: 150,
 
                         alignment: Alignment.center,
                         child: Text(
@@ -123,10 +131,17 @@ class _ObraDescPageState extends State<ObraDescPage> {
                         ),
                       ),
                     ),
+                    const Center(
+                      child: Divider(
+                        color: Colors.white,
+                        indent: 100,
+                        endIndent: 100,
+                      ),
+                    ),
                     const SizedBox(height: 20.0),
                   ],
                 ),
-                const SizedBox(height: 20.0),
+
                 const Wrap(
                   alignment: WrapAlignment.center,
                   spacing: 10.0,
@@ -141,7 +156,7 @@ class _ObraDescPageState extends State<ObraDescPage> {
 
                 MyButton(
                   onTap: () => Navigator.pushNamed(context, 'pages/obra', arguments: id),
-                  buttonText: 'Ler',
+                  buttonText: 'Continuar leitura',
                   width: 170.0,
                   height: 60.0,
                   colorAway: Colors.white,
@@ -149,8 +164,11 @@ class _ObraDescPageState extends State<ObraDescPage> {
                   borderColorAway: Colors.black,
                   borderColorPressed: Colors.white,
                 ),
+
                 const SizedBox(height: 10.0),
+
               ],
+
             ),
           );
         },
@@ -173,7 +191,7 @@ class _ObraDescPageState extends State<ObraDescPage> {
             NavigationDestination(
               icon: Icon(Icons.book, color: Colors.white),
               selectedIcon: Icon(Icons.pages_outlined, color: Colors.black),
-              label: 'Histórico',
+              label: 'Capítulos',
             ),
           ],
         ),
