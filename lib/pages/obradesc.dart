@@ -60,17 +60,19 @@ class _ObraDescPageState extends State<ObraDescPage> {
           final imageUrl = snapshot.data?['ImageUrl'];
           final obraName = snapshot.data?['Name'];
           final obraDesc = snapshot.data?['DescOb'];
+          final obraGenres = snapshot.data?['genres'];
 
           return SingleChildScrollView(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                SizedBox.fromSize(size: Size.fromHeight(60)),
+                SizedBox.fromSize(size: const Size.fromHeight(60)),
                 if (imageUrl != null)
                   Card(
                     child: Image.network(
                       imageUrl,
+
                       width: 260,
                     ),
                   )
@@ -94,61 +96,45 @@ class _ObraDescPageState extends State<ObraDescPage> {
                       style: const TextStyle(color: Colors.grey, fontFamily: 'Itim',height: 1.5),
                     ),
                     const SizedBox(height: 12.0),
+                    if (obraGenres!= null)
                     Wrap(
                       alignment: WrapAlignment.center,
+                      spacing: 10.0,
                       children: [
-                        const Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Chip(
-                              label: Text('Ação'),
-                            ),
-                            SizedBox(width: 10.0),
-                            Chip(
-                              label: Text('Comédia'),
-                            ),
-                            SizedBox(width: 10.0),
-                            Chip(
-                              label: Text('Fantasia'),
-                            ),
-                          ],
-                        ),
-                        const SizedBox(width: 20.0),
-                        SingleChildScrollView(
-                          child: Container(
-                            padding: const EdgeInsets.all(20.0),
-                            width: 400.0,
-                            height: 200,
-
-                            alignment: Alignment.center,
-                            child: Text(
-                              obraDesc,
-                              maxLines: 10,
-                              style: const TextStyle(color: Colors.white, fontSize: 16.0),
-                              textAlign: TextAlign.center,
-                            ),
+                        for (final genre in obraGenres)
+                          Chip(
+                            label: Text(genre),
                           ),
-                        ),
-                        const SizedBox(height: 20.0),
                       ],
                     ),
+                    const SizedBox(width: 20.0),
+                    SingleChildScrollView(
+                      child: Container(
+                        padding: const EdgeInsets.all(20.0),
+                        width: 400.0,
+                        height: 200,
+
+                        alignment: Alignment.center,
+                        child: Text(
+                          obraDesc,
+                          maxLines: 10,
+                          style: const TextStyle(color: Colors.white, fontSize: 16.0),
+                          textAlign: TextAlign.center,
+                        ),
+                      ),
+                    ),
+                    const SizedBox(height: 20.0),
                   ],
                 ),
                 const SizedBox(height: 20.0),
-                Wrap(
+                const Wrap(
                   alignment: WrapAlignment.center,
                   spacing: 10.0,
                   runSpacing: 10.0,
                   children: [
-                    const Icon(CupertinoIcons.book_fill, color: Colors.white, size: 30.0,),
-                    IconButton(
-                      onPressed: () {},
-                      icon: const Icon(CupertinoIcons.heart, color: Colors.white,size: 30.0),
-                    ),
-                    IconButton(
-                      onPressed: () {},
-                      icon: const Icon(CupertinoIcons.captions_bubble, color: Colors.white,size: 30.0),
-                    ),
+                    Icon(CupertinoIcons.book_fill, color: Colors.white, size: 30.0,),
+                    Icon(CupertinoIcons.heart, color: Colors.white,size: 30.0),
+                    Icon(CupertinoIcons.captions_bubble, color: Colors.white,size: 30.0),
                   ],
           ),
                 const SizedBox(height: 20.0),
