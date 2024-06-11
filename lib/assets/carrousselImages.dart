@@ -29,12 +29,14 @@ class CarousselImage extends StatelessWidget {
         // Use route name string
       },
       child: Container(
+        width: double.infinity,
         decoration: BoxDecoration(
 
           borderRadius: BorderRadius.circular(0),
           color: Colors.transparent,
         ),
         child: Column(
+
           children: [
             // Use BoxFit.cover for image to fill container
             Expanded(

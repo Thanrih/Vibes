@@ -65,6 +65,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   final dataList = snapshot.data!.sublist(0, 3); // Peguei os primeiros 3 itens da lista
 
                   return CarouselSlider(
+
                     items: dataList.map((data) {
                       return CarousselImage(
                         imageUrl: data['ImageUrl'],
@@ -78,8 +79,8 @@ class _MyHomePageState extends State<MyHomePage> {
                       autoPlay: true,
                       autoPlayCurve: Curves.fastOutSlowIn,
                       autoPlayAnimationDuration: const Duration(milliseconds: 500),
-                      height: 360,
-                      viewportFraction: 0.8,
+                      height: 400,
+                      viewportFraction: 1,
                       initialPage: 0,
                       enableInfiniteScroll: true,
                       reverse: false,
@@ -113,22 +114,27 @@ class _MyHomePageState extends State<MyHomePage> {
                 } else {
                   final dataList = snapshot.data!.sublist(0, 5);
 
-                  return SizedBox(
-                    height: 150,
+                  return Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: SizedBox(
+                      height: 200,
+                      child: HorizontalListView(
 
-                    child: HorizontalListView(
-                      crossAxisCount: 4,
-                      crossAxisSpacing: 10,
-                      children: dataList.map((data) {
-                        return MangaCard(
-                          imageUrl: data['ImageUrl'],
-                          title: data['Name'],
-                          textSize: 16,
-                          textPadding: 0,
-                          desc: '',
-                          id: data['id'],
-                        );
-                      }).toList(),
+                        crossAxisCount: 4,
+                        crossAxisSpacing: 10,
+                        children: dataList.map((data) {
+                          return MangaCard(
+                            imageUrl: data['ImageUrl'],
+                            title: data['Name'],
+                            textSize: 16,
+                            textPadding: 0,
+                            desc: '',
+                            id: data['id'],
+                            obraGenres: data['genres'],
+                            views: data['views'],
+                          );
+                        }).toList(),
+                      ),
                     ),
                   );
                 }
@@ -171,6 +177,9 @@ class _MyHomePageState extends State<MyHomePage> {
                           textPadding: 20,
                           desc: '',
                           id: data['id'],
+                          obraGenres: data['genres'],
+                          views: data['views'],
+
                         );
                       }).toList(),
                     ),

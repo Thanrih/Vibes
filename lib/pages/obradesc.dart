@@ -97,40 +97,35 @@ class _ObraDescPageState extends State<ObraDescPage> {
                     ),
                     const SizedBox(height: 12.0),
                     if (obraGenres!= null)
-                    Wrap(
-                      alignment: WrapAlignment.center,
-                      spacing: 10.0,
-                      children: [
-                        for (final genre in obraGenres)
-                          Chip(
-                            label: Text(genre),
+                      Wrap(
+                        alignment: WrapAlignment.center,
+                        spacing: 10.0,
+                        children: [
+                          for (final genre in obraGenres)
+                            Chip(
+                              label: Text(genre),
+                            ),
+                        ],
+                      ),
+
+
+                    Padding(
+                      padding: const EdgeInsets.fromLTRB(0, 10, 0, 10),
+                      child: SizedBox(
+                        width: 350,
+                        height: 200,
+
+                        child: SingleChildScrollView(
+                          scrollDirection: Axis.vertical,
+                            child: Text(
+                              obraDesc,
+                              style: const TextStyle(color: Colors.grey, fontSize: 14.0),
+                              textAlign: TextAlign.center,
+                            ),
                           ),
-                      ],
-                    ),
-
-                    const Center(
-                      child: Divider(
-                        color: Colors.white,
-                        indent: 100,
-                        endIndent: 100,
                       ),
                     ),
 
-                    SingleChildScrollView(
-                      child: Container(
-                        padding: const EdgeInsets.all(20.0),
-                        width: 400.0,
-                        height: 150,
-
-                        alignment: Alignment.center,
-                        child: Text(
-                          obraDesc,
-                          maxLines: 10,
-                          style: const TextStyle(color: Colors.white, fontSize: 16.0),
-                          textAlign: TextAlign.center,
-                        ),
-                      ),
-                    ),
                     const Center(
                       child: Divider(
                         color: Colors.white,
@@ -151,7 +146,7 @@ class _ObraDescPageState extends State<ObraDescPage> {
                     Icon(CupertinoIcons.heart, color: Colors.white,size: 30.0),
                     Icon(CupertinoIcons.captions_bubble, color: Colors.white,size: 30.0),
                   ],
-          ),
+                ),
                 const SizedBox(height: 20.0),
 
                 MyButton(
