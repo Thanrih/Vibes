@@ -28,15 +28,18 @@ class RegisterPage extends StatelessWidget {
         iconTheme: const IconThemeData(color: Colors.black),
         foregroundColor: Colors.transparent,
       ),
-      backgroundColor: Colors.grey[300],
+      backgroundColor: Colors.black,
       body: SafeArea(
         child: Center(
           child: Column(
             children: [
+              Image.network('https://xyewkeuvgrephjahsjds.supabase.co/storage/v1/object/public/Icons/WhatsApp_Image_2024-05-06_at_21.10_2.png?t=2024-06-02T14%3A46%3A34.634Z',
+                  height: 200),
               Container(
                   padding: const EdgeInsets.symmetric(vertical: 50.0, horizontal: 0),
+
                   child: const Text('Registre-se', style: TextStyle(
-                    color: Colors.black54,
+                    color: Colors.white,
                     fontSize: 25,
                   ),
                   )),
@@ -45,44 +48,19 @@ class RegisterPage extends StatelessWidget {
               MyTextField(controller: emailControler,obscureText: false,hintText: 'E-mail',),//username
               const SizedBox(height: 25),
               //senha
-              MyTextField(controller: passwordController,obscureText: true,hintText: 'password',),//password
-              const SizedBox(height: 10),
-              //esqueceu a senha?
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 25.0),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: [
-                    Text(
-                      'Esqueceu a senha?',
-                      style: TextStyle(color: Colors.grey[600]),
-                    ),
-                  ],
-                ),
-              ),
-              const SizedBox(height: 10),
+              MyTextField(controller: passwordController,obscureText: true,hintText: 'Senha',),//password
+              const SizedBox(height: 25),
+              MyTextField(controller: passwordController,obscureText: true,hintText: 'Confirmar senha',),//password
+
+              const SizedBox(height: 25),
               MyButton(
-                  onTap: userSignIn, buttonText: 'Login', width: 150, height: 70,colorAway: Colors.white, colorPressed: Colors.black,borderColorAway: Colors.black, borderColorPressed: Colors.white),
+                  onTap: userSignIn, buttonText: 'Finalizar', width: 150, height: 70,colorAway: Colors.white, colorPressed: Colors.black,borderColorAway: Colors.black, borderColorPressed: Colors.white),
               const SizedBox(height: 10),
 
 
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal:25.0),
-                child: Row(
-                  children: [
-                    Expanded(
-                      child: Divider(
-                        thickness: 0.5,
-                        color:  Colors.grey[400],
-                      ),
-                    ),
-                    const SizedBox(height: 50),
-                    Expanded(child: Divider(
-                      thickness: 0.5,
-                      color: Colors.grey[400],
-                    ))
-                  ],
-                ),
+              const Padding(
+                padding: EdgeInsets.symmetric(horizontal:25.0),
+
               ),
               //google e apple
 
