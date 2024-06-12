@@ -63,26 +63,49 @@ class _CapsState extends State<Caps> {
             itemBuilder: (context, index) {
               final chapter = chapters[index];
               return ListTile(
-                title: GestureDetector(
-                  onTap: () {
-                    final id = ModalRoute.of(context)!.settings.arguments as String;
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => const ReadingPage(),
-                        settings: RouteSettings(
-                          arguments: {
-                            'id': id,
-                            'cap': chapter,
-                          },
+                title: SizedBox(
+                  width: MediaQuery.of(context).size.width,
+                  child: GestureDetector(
+                    onTap: () {
+                      final id = ModalRoute.of(context)!.settings.arguments as String;
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const ReadingPage(),
+                          settings: RouteSettings(
+                            arguments: {
+                              'id': id,
+                              'cap': chapter,
+                            },
+                          ),
                         ),
+                      );
+                    },
+                    child: Container(
+                      padding: const EdgeInsets.all(5.0), // Espaçamento ao redor do texto
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(8.0), // Borda arredondada
+                        color: Colors.transparent, // Cor de fundo transparente
                       ),
-                    );
-                  },
-                  child: Row(
-                    children: [
-                      Text('Capítulo $chapter', style: const TextStyle(fontSize: 18, color: Colors.white)),
-                    ],
+                      child: Column(
+                        children: [
+                          Row(
+                            children: [
+                              Text(
+                                'Capítulo $chapter',
+                                style: const TextStyle(fontSize: 18, color: Colors.white),
+                              ),
+                            ],
+                          ),
+                      Divider(
+                            thickness: 0.1,
+                            color: Colors.grey[400],
+                          )
+                        ],
+
+                      ),
+
+                    ),
                   ),
                 ),
               );

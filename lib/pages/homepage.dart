@@ -66,15 +66,20 @@ class _MyHomePageState extends State<MyHomePage> {
 
                   return CarouselSlider(
                     items: dataList.map((data) {
-                      return CarousselImage(
-                        imageUrl: data['ImageUrl'],
-                        title: '',
-                        textSize: 0,
-                        desc: '',
-                        id: data['id'],
+                      return Stack(
+                        children: [
+                          CarousselImage(
+                            imageUrl: data['ImageUrl'],
+                            title: '',
+                            textSize: 0,
+                            desc: '',
+                            id: data['id'],
+                          ),
+                        ],
                       );
                     }).toList(),
                     options: CarouselOptions(
+                      // Suas opções do Carousel
                       autoPlay: true,
                       autoPlayCurve: Curves.fastOutSlowIn,
                       autoPlayAnimationDuration: const Duration(milliseconds: 500),

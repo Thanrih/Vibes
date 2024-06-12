@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 
 class CarousselImage extends StatelessWidget {
@@ -10,8 +9,8 @@ class CarousselImage extends StatelessWidget {
   final double textSize;
   final int id;
 
-  const CarousselImage ({
-    super.key,
+  const CarousselImage({
+    Key? key,
     required this.id,
     this.textPadding = 0,
     required this.imageUrl,
@@ -19,7 +18,7 @@ class CarousselImage extends StatelessWidget {
     this.textSize = 0,
     this.badge = '',
     required this.desc,
-  });
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -28,33 +27,37 @@ class CarousselImage extends StatelessWidget {
         Navigator.pushNamed(context, 'pages/desc', arguments: id);
         // Use route name string
       },
-      child: Container(
-        width: double.infinity,
-        decoration: BoxDecoration(
-
-          borderRadius: BorderRadius.circular(0),
-          color: Colors.transparent,
-        ),
-        child: Column(
-
-          children: [
-            // Use BoxFit.cover for image to fill container
-            Expanded(
-              child: Image.network(
-                imageUrl.isNotEmpty ? imageUrl : 'https://lermangas.me/wp-content/uploads/2024/02/nossa-alianca-secreta.jpg',
-                fit: BoxFit.cover, // Ensure image fills container
-              ),
+      child: Stack(
+        children: [
+          Container(
+            width: double.infinity,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(0),
+              color: Colors.transparent,
             ),
-            Text(
-              title,
-              style: TextStyle(
-                color: Colors.white,
-                fontSize: textSize,
-                fontWeight: FontWeight.w500,
-              ),
+            child: Column(
+              children: [
+                Expanded(
+                  child: Image.network(
+                    imageUrl,
+                    fit: BoxFit.cover, // Ensure image fills container
+                  ),
+                ),
+                Padding(
+                  padding: EdgeInsets.all(textPadding), // Apply text padding
+                  child: Text(
+                    title,
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: textSize,
+                      fontWeight: FontWeight.w500,
+                    ),
+                  ),
+                ),
+              ],
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }
