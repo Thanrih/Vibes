@@ -39,7 +39,7 @@ class _ReadingPageState extends State<ReadingPage> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.transparent,
-        iconTheme: const IconThemeData(color: Colors.white),
+        iconTheme: const IconThemeData(color: Colors.black),
         foregroundColor: Colors.transparent,
       ),
       body: FutureBuilder<List<String>>(
