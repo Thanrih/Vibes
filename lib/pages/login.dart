@@ -23,7 +23,7 @@ class LoginPage extends StatelessWidget {
     }
 
     return Scaffold(
-      backgroundColor: Colors.grey[300],
+      backgroundColor: Colors.black,
       body: SafeArea(
         child: Center(
           child: Column(
@@ -98,14 +98,14 @@ class LoginPage extends StatelessWidget {
                 ),
               ),
               //google e apple
-              const Row(
+              /*const Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   SquareTile(imagePath: 'https://cdn4.iconfinder.com/data/icons/logos-brands-7/512/google_logo-google_icongoogle-512.png'),
                   SizedBox(width:10),
                   SquareTile(imagePath: 'https://cdn3.iconfinder.com/data/icons/picons-social/57/16-apple-512.png')
                 ],
-              ),
+              ),*/
               SizedBox.fromSize(child: const SizedBox(height: 30)),
               ElevatedButton(
                 onPressed: () {
@@ -114,7 +114,7 @@ class LoginPage extends StatelessWidget {
                 },
                 style: ElevatedButton.styleFrom(
 
-                  minimumSize: const Size(double.infinity, 30), backgroundColor: Colors.white, // Set button background color
+                  minimumSize: const Size(200, 40), backgroundColor: Colors.transparent, // Set button background color
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(10.0), // Add rounded corners
                   ),

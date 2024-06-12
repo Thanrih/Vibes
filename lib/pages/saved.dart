@@ -10,8 +10,11 @@ class SavedPage extends StatelessWidget {
     final favorites = context.watch<FavoritesProvider>().favorites;
 
     return Scaffold(
+      backgroundColor: Colors.black,
       appBar: AppBar(
-        title: Text('Saved'),
+        backgroundColor: Colors.transparent,
+        iconTheme: const IconThemeData(color: Colors.white),
+        foregroundColor: Colors.transparent,
       ),
       body: ListView.builder(
         itemCount: favorites.length,

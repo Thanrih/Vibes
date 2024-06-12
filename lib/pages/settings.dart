@@ -9,9 +9,10 @@ class ConfigPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.black,
-      appBar: AppBar(title: const Text('Configurações'),
-      backgroundColor: Colors.transparent,
-        titleTextStyle: const TextStyle(color: Colors.white),
+      appBar: AppBar(
+        backgroundColor: Colors.transparent,
+        iconTheme: const IconThemeData(color: Colors.white),
+        foregroundColor: Colors.transparent,
       ),
       body: const Column(
         mainAxisAlignment: MainAxisAlignment.start,

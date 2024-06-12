@@ -10,17 +10,24 @@ class ReadingPage extends StatefulWidget {
 
 class _ReadingPageState extends State<ReadingPage> {
   late Future<List<String>> _futureImages;
+  late String id;
+  late String cap;
 
   @override
-  void initState() {
-    super.initState();
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    final args = ModalRoute.of(context)!.settings.arguments as Map<String, dynamic>;
+    id = args['id'];
+    cap = args['cap'].toString();
+    _futureImages = fetchImages(id, cap);
   }
 
-  Future<List<String>> fetchImages(String id) async {
+  Future<List<String>> fetchImages(String id, String cap) async {
     final response = await Supabase.instance.client
         .from('Pages')
         .select('page')
         .eq('id', id)
+        .eq('cap', cap)
         .single();
 
     final List<dynamic> pageUrls = response['page'];
@@ -29,20 +36,19 @@ class _ReadingPageState extends State<ReadingPage> {
 
   @override
   Widget build(BuildContext context) {
-    final String id = (ModalRoute.of(context)?.settings.arguments).toString();
-
-    // Initialize the future in the build method
-    _futureImages = fetchImages(id);
-
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Reading Page'),
+        backgroundColor: Colors.transparent,
+        iconTheme: const IconThemeData(color: Colors.white),
+        foregroundColor: Colors.transparent,
       ),
       body: FutureBuilder<List<String>>(
         future: _futureImages,
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
-            return const Center(child: CircularProgressIndicator());
+            return const Center(
+              child: CircularProgressIndicator(),
+            );
           } else if (snapshot.hasError) {
             return Center(child: Text('Error: ${snapshot.error}'));
           } else if (!snapshot.hasData || snapshot.data!.isEmpty) {

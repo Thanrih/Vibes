@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:sakugaacaptors/pages/caps.dart';
 import 'package:sakugaacaptors/pages/history.dart';
 import 'package:sakugaacaptors/pages/homepage.dart';
 import 'package:sakugaacaptors/pages/login.dart';
@@ -57,7 +58,6 @@ class _MyAppState extends State<MyApp> {
       _currentIndex = index;
     });
   }
-
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -107,11 +107,12 @@ class _MyAppState extends State<MyApp> {
         'pages/history': (context) => const HistoryPage(),
         'pages/saved': (context) => const SavedPage(),
         'pages/config': (context) => const ConfigPage(),
-        'pages/desc': (context) => ObraDescPage(),
+        'pages/desc': (context) => const ObraDescPage(),
         'pages/obra': (context) => const ReadingPage(),
         'pages/profile': (context) => const Profile(),
         'pages/login': (context) => LoginPage(),
         'pages/register': (context) => RegisterPage(),
+        'pages/caps': (context) => const Caps(),
       },
     );
   }

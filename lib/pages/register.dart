@@ -23,6 +23,11 @@ class RegisterPage extends StatelessWidget {
     }
 
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.transparent,
+        iconTheme: const IconThemeData(color: Colors.black),
+        foregroundColor: Colors.transparent,
+      ),
       backgroundColor: Colors.grey[300],
       body: SafeArea(
         child: Center(

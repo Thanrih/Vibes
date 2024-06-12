@@ -7,8 +7,11 @@ class HistoryPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.black,
       appBar: AppBar(
-        title: const Text('history'),
+        backgroundColor: Colors.transparent,
+        iconTheme: const IconThemeData(color: Colors.white),
+        foregroundColor: Colors.transparent,
       ),
       body: const Column(
         children: [
@@ -24,3 +27,4 @@ class HistoryPage extends StatelessWidget {
 
   }
 }
+

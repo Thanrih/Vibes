@@ -65,7 +65,6 @@ class _MyHomePageState extends State<MyHomePage> {
                   final dataList = snapshot.data!.sublist(0, 3); // Peguei os primeiros 3 itens da lista
 
                   return CarouselSlider(
-
                     items: dataList.map((data) {
                       return CarousselImage(
                         imageUrl: data['ImageUrl'],
@@ -119,7 +118,6 @@ class _MyHomePageState extends State<MyHomePage> {
                     child: SizedBox(
                       height: 200,
                       child: HorizontalListView(
-
                         crossAxisCount: 4,
                         crossAxisSpacing: 10,
                         children: dataList.map((data) {
@@ -155,33 +153,38 @@ class _MyHomePageState extends State<MyHomePage> {
               future: _data(),
               builder: (context, snapshot) {
                 if (snapshot.connectionState == ConnectionState.waiting) {
-                  return const CircularProgressIndicator();
+                  return const Padding(
+                    padding: EdgeInsets.fromLTRB(0,200,0,200),
+                    child: CircularProgressIndicator(),
+                  );
                 } else if (snapshot.hasError) {
                   return Text('Error: ${snapshot.error}');
                 } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
                   return const Text('No images found');
                 } else {
-                  final dataList = snapshot.data!.sublist(0, 4); // Peguei os primeiros 3 itens da lista
+                  final dataList = snapshot.data!
+                    ..sort((a, b) => b['views'].compareTo(a['views'])); // Ordena a lista por 'views'
 
-                  return SizedBox(
-                    height: 150,
-
-                    child: HorizontalListView(
-                      crossAxisCount: 4,
-                      crossAxisSpacing: 10,
-                      children: dataList.map((data) {
-                        return MangaCard(
-                          imageUrl: data['ImageUrl'],
-                          title: data['Name'],
-                          textSize: 15,
-                          textPadding: 20,
-                          desc: '',
-                          id: data['id'],
-                          obraGenres: data['genres'],
-                          views: data['views'],
-
-                        );
-                      }).toList(),
+                  return Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: SizedBox(
+                      height: 200,
+                      child: HorizontalListView(
+                        crossAxisCount: 4,
+                        crossAxisSpacing: 10,
+                        children: dataList.map((data) {
+                          return MangaCard(
+                            imageUrl: data['ImageUrl'],
+                            title: data['Name'],
+                            textSize: 15,
+                            textPadding: 20,
+                            desc: '',
+                            id: data['id'],
+                            obraGenres: data['genres'],
+                            views: data['views'],
+                          );
+                        }).toList(),
+                      ),
                     ),
                   );
                 }
